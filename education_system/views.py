@@ -1,4 +1,3 @@
-# views.py
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -11,6 +10,7 @@ from .serializers import LessonsAllSerializer, LessonPerProductSerializer, Produ
 
 class HomeView(APIView):
     def get(self, request):
+        django_admin_url = request.build_absolute_uri(reverse('admin:login'))
         lesson_list_url = request.build_absolute_uri(reverse('lesson-list'))
         product_lesson_list_url = request.build_absolute_uri(reverse('product-lesson-list', args=[1]))
         product_statistics_url = request.build_absolute_uri(reverse('product-statistics'))
@@ -19,6 +19,7 @@ class HomeView(APIView):
             'API1 - lesson_list_url': lesson_list_url,
             'API2 - product_lesson_list_url': product_lesson_list_url,
             'API3 - product_statistics_url': product_statistics_url,
+            'Sign in': django_admin_url,
         }
 
         return Response(data, status=status.HTTP_200_OK)

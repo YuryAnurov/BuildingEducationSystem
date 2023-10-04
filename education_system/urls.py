@@ -1,4 +1,3 @@
-# ulrs.py (application)
 from django.urls import path
 from .views import LessonListView, ProductLessonListView, ProductStatisticsView
 
